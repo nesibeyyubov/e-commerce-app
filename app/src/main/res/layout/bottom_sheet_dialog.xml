@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="15dp"
+    android:background="@drawable/bottom_sheet_bg"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/ripple_orange_bg_rounded"
+            android:layout_width="80dp"
+            android:layout_height="5dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:text="Subtotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/textSubTotal"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="32 AZN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:text="Tax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_marginTop="-10dp"
+            android:textSize="12sp"
+            android:textColor="@color/colorTextLight"
+            android:textStyle="bold"
+            android:text="(-5%)"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/textTax"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="3 AZN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:text="Delivery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Free"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:textColor="@android:color/black"
+            android:text="Total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/textTotal"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:text="35 AZN"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:clickable="true"
+        android:id="@+id/orderBtn"
+        android:layout_marginVertical="15dp"
+        android:gravity="center"
+        android:background="@drawable/ripple_orange_bg_rounded"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/orderBtnProgressBar"
+            android:indeterminateTint="@android:color/white"
+            android:layout_width="25dp"
+            android:layout_height="25dp"/>
+        <TextView
+            android:id="@+id/orderBtnText"
+            android:text="Order Now"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>

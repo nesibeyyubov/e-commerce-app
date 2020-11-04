@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="16dp"
+    android:layout_marginHorizontal="16dp"
+    android:layout_width="match_parent"
+    android:background="@drawable/border_bottom_bg"
+    android:layout_height="120dp">
+
+    <TextView
+        android:id="@+id/foodPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:includeFontPadding="false"
+        android:textColor="@color/colorPrimary"
+        android:text="18 AZN"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:includeFontPadding="false"
+        android:maxWidth="190dp"
+        android:text="1 eded sogan,2 eded corey, insanlarin en cox beyendiyi yemey"
+        android:textColor="@color/colorTextLight"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/foodImage"
+        app:layout_constraintTop_toBottomOf="@+id/productName" />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/foodImage"
+        app:riv_corner_radius="20dp"
+        android:layout_marginLeft="4dp"
+        android:layout_width="90dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/burger"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/productName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:includeFontPadding="false"
+        android:layout_marginTop="10dp"
+        android:text="Burger(KFC)"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/foodImage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/foodImage">
+
+        <Button
+            android:id="@+id/decreaseButton"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/item_count_bg"
+            android:text="-"
+            android:textColor="@color/colorTextLight"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/foodCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:text="1"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/increaseButton"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/item_count_bg"
+            android:text="+"
+            android:textColor="@color/colorTextLight"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:clickable="true"
+        android:id="@+id/addToCartButton"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/add_to_cart_btn"
+        android:gravity="center"
+        android:paddingHorizontal="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/addToCartButtonBasketIcon"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_cart_white" />
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/addToCartButtonDoneIcon"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_done" />
+
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/addToCartButtonProgressBar"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginRight="5dp"
+            android:indeterminateTint="@android:color/white" />
+
+        <TextView
+            android:id="@+id/addToCartButtonText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add to cart"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

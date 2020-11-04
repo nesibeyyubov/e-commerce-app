@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_marginHorizontal="@dimen/pagePadding"
+    android:layout_height="150dp">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/adImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ad_one"
+        app:riv_corner_radius="8dp" />
+
+</RelativeLayout>
+

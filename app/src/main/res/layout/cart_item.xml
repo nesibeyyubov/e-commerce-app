@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="22dp"
+    android:layout_marginHorizontal="16dp"
+    android:layout_width="match_parent"
+    android:background="@drawable/border_bottom_bg"
+    android:layout_height="90dp">
+
+    <TextView
+        android:id="@+id/foodPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="10dp"
+        android:includeFontPadding="false"
+        android:textColor="@color/colorPrimary"
+        android:text="18 AZN"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <RelativeLayout
+        android:id="@+id/deleteBtn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@color/colorDarkBlue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+        <TextView
+            android:id="@+id/deleteBtnText"
+            android:layout_centerInParent="true"
+            android:text="X"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/deleteBtnProgressBar"
+            android:layout_centerInParent="true"
+            android:indeterminateTint="@android:color/white"
+            android:layout_width="18dp"
+            android:layout_height="18dp"/>
+    </RelativeLayout>
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/foodImage"
+        app:riv_corner_radius="20dp"
+        android:layout_marginLeft="4dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/burger"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/foodName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="10dp"
+        android:includeFontPadding="false"
+        android:text="Burger(KFC)"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/foodImage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/foodImage">
+
+        <Button
+            android:id="@+id/decButton"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/item_count_bg"
+            android:text="-"
+            android:textColor="@color/colorTextLight"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/foodCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:text="1"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/incButton"
+            android:layout_width="25dp"
+            android:textColor="@color/colorTextLight"
+            android:layout_height="25dp"
+            android:background="@drawable/item_count_bg"
+            android:text="+"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
