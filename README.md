@@ -11,12 +11,12 @@ A food order app.
 
 <table>
   <tr>
-     <td>Sign up or login</td>
-     <td>See last messages</td>
-     <td>See all users</td>
-     <td>Messaging</td>
-     <td>Profile and logout</td>
-     <td>Profile and logout</td>
+     <td>Welcome Page</td>
+     <td>Signup,login page</td>
+     <td>Home page</td>
+     <td>Foods page</td>
+     <td>Basket page</td>
+     <td>Checkout</td>
   </tr>
   <tr>
     <td valign="top"><img src="welcome.png"></td>
