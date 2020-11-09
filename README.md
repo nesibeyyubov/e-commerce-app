@@ -1,12 +1,12 @@
-:fire: A food order app.
+:boom: A food order app.
 
 <h3>Technologies i used</h3>
 <ul>
-  <li>Kotlin</li>
-  <li>MVVM Architecture</li>
-  <li>Dagger Hilt</li>
-  <li>Jetpack Navigation</li>
-  <li>Cloud Firestore</li>
+  <li>:fire: Kotlin</li>
+  <li>:fire: MVVM Architecture</li>
+  <li>:fire: Dagger Hilt</li>
+  <li>:fire: Jetpack Navigation</li>
+  <li>:fire: Cloud Firestore</li>
 </ul>
 
 <table>
