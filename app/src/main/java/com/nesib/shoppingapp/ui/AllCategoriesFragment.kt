@@ -28,6 +28,10 @@ class AllCategoriesFragment : Fragment(R.layout.fragment_all_categories) {
             layoutManager = LinearLayoutManager(this@AllCategoriesFragment.context)
             setHasFixedSize(true)
         }
+
+        backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
 }

@@ -49,8 +49,6 @@ class CategoryAdapter(val inAllCategories: Boolean = false) :
     }
 
     override fun onBindViewHolder(holder: CategoryHolder, position: Int) {
-        val url =
-            "https://i1.wp.com/www.eatthis.com/wp-content/uploads/2020/07/mcdonalds-1.jpg?fit=1200%2C879&ssl=1"
         val category = categoryList[position]
         holder.apply {
             categoryImage.setImageResource(category.imageUrl)

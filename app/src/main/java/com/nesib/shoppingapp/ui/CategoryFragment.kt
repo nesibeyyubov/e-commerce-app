@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.nesib.shoppingapp.MainActivity
 import com.nesib.shoppingapp.R
 import com.nesib.shoppingapp.adapters.FoodAdapter
 import com.nesib.shoppingapp.model.Category
@@ -37,7 +38,6 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
     private lateinit var foodAdapter: FoodAdapter
     private lateinit var selectedCategory: Category
     private lateinit var foodList: ArrayList<Food>
-    private val auth = FirebaseAuth.getInstance()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeViewModels()
@@ -62,7 +62,7 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
     }
 
     private fun getUser() {
-        if (auth.currentUser == null) {
+        if (!userViewModel.isAuthenticated) {
             userData = User()
             setupFoodRecyclerView()
             return
@@ -82,8 +82,8 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
     }
 
     private fun initializeViewModels() {
-        foodViewModel = ViewModelProvider(this).get(FoodViewModel::class.java)
-        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        userViewModel = (activity as MainActivity).userViewModel!!
+        foodViewModel = (activity as MainActivity).foodViewModel!!
     }
 
     private fun setupUi() {
@@ -92,7 +92,7 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
         categoryImage.setImageResource(selectedCategory.imageUrl)
 
         basketButton.setOnClickListener {
-            if (auth.currentUser == null) {
+            if (!userViewModel.isAuthenticated) {
                 showWarningDialog()
             } else {
                 findNavController().navigate(R.id.action_categoryFragment_to_basketFragment)
@@ -140,7 +140,7 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
         }
         foodAdapter.onAddButtonClickListener =
             { food, button, buttonText, progressBar, doneIcon, basketIcon ->
-                if (userViewModel.isAuthenticated.value!!) {
+                if (userViewModel.isAuthenticated) {
                     progressBar.visibility = View.VISIBLE
                     basketIcon.visibility = View.GONE
                     foodViewModel.addFoodToBasket(food).addOnCompleteListener {
@@ -160,12 +160,7 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
                         }
                     }
                 } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Failed! Please login first",
-                        Toast.LENGTH_SHORT
-                    )
-                        .show()
+                    showWarningDialog()
                 }
             }
         foodAdapter.onDecButtonClickListener =

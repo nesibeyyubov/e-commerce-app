@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
+import com.nesib.shoppingapp.MainActivity
 import com.nesib.shoppingapp.R
 import com.nesib.shoppingapp.adapters.OrderAdapter
 import com.nesib.shoppingapp.model.Food
@@ -28,10 +29,10 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
     private lateinit var userViewModel: UserViewModel
     private lateinit var userData: User
     private var orderAdapter = OrderAdapter()
-    private val auth = FirebaseAuth.getInstance()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        userViewModel = (activity as MainActivity).userViewModel!!
         setupUi()
         setupOrdersRecyclerView()
         subscribeObservers()
@@ -59,7 +60,7 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
 
 
     private fun subscribeObservers() {
-        if(auth.currentUser == null) {
+        if(!userViewModel.isAuthenticated) {
             showWarningDialog()
             noUserContainer.visibility = View.VISIBLE
             return
@@ -68,7 +69,7 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
             orderRecyclerView.visibility = View.VISIBLE
         }
         var firstRender = true
-        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        userViewModel = (activity as MainActivity).userViewModel!!
         userViewModel.getUserData(true).observe(viewLifecycleOwner) { user ->
             if(firstRender){
                 orderProgressBar.visibility = View.VISIBLE

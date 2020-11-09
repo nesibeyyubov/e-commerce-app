@@ -2,30 +2,41 @@ package com.nesib.shoppingapp.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.nesib.shoppingapp.MainActivity
 import com.nesib.shoppingapp.R
+import com.nesib.shoppingapp.WelcomeActivity
 import com.nesib.shoppingapp.model.User
+import com.nesib.shoppingapp.viewmodels.UserViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_auth.*
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class AuthFragment : Fragment(R.layout.fragment_auth), View.OnClickListener {
     private var isRegistering = false
-    private val auth = FirebaseAuth.getInstance()
-    private val db = Firebase.firestore
+
+    @Inject
+    lateinit var db: FirebaseFirestore
+
+    private lateinit var userViewModel: UserViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        userViewModel = (activity as WelcomeActivity).userViewModel!!
         initialize()
-
     }
 
     private fun initialize() {
@@ -47,6 +58,9 @@ class AuthFragment : Fragment(R.layout.fragment_auth), View.OnClickListener {
                 null
             )
         )
+        if (errorText.visibility == View.VISIBLE) {
+            errorText.visibility = View.GONE
+        }
     }
 
     private fun toggleProgressBar(loading: Boolean) {
@@ -57,7 +71,7 @@ class AuthFragment : Fragment(R.layout.fragment_auth), View.OnClickListener {
     private fun openMainActivity() {
         startActivity(Intent(activity, MainActivity::class.java))
         requireActivity().finish()
-        requireActivity().overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left)
+        requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
     override fun onClick(view: View?) {
@@ -90,20 +104,21 @@ class AuthFragment : Fragment(R.layout.fragment_auth), View.OnClickListener {
                 if (!isRegistering) {
                     toggleProgressBar(true)
                     authButton.isEnabled = false
-                    auth.signInWithEmailAndPassword(email, password)
+                    userViewModel.signIn(email, password)
                         .addOnCompleteListener {
                             if (it.isSuccessful) {
                                 errorText.visibility = View.GONE
                                 openMainActivity()
                             } else {
                                 errorText.visibility = View.VISIBLE
+                                toggleProgressBar(false)
                                 authButton.isEnabled = true
                             }
                         }
                 } else {
                     toggleProgressBar(true)
                     authButton.isEnabled = false
-                    auth.createUserWithEmailAndPassword(email, password)
+                    userViewModel.signUp(email, password)
                         .addOnCompleteListener {
                             if (it.isSuccessful) {
                                 errorText.visibility = View.GONE
@@ -117,6 +132,7 @@ class AuthFragment : Fragment(R.layout.fragment_auth), View.OnClickListener {
                             } else {
                                 authButton.isEnabled = true
                                 toggleProgressBar(false)
+                                errorText.text = "Something went wrong,please try again"
                             }
                         }
                 }

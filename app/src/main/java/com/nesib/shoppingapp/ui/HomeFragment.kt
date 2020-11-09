@@ -17,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.nesib.shoppingapp.MainActivity
 import com.nesib.shoppingapp.R
 import com.nesib.shoppingapp.adapters.AdAdapter
 import com.nesib.shoppingapp.adapters.CategoryAdapter
@@ -30,11 +31,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private lateinit var userViewModel: UserViewModel
     private lateinit var bottomNavBar: BottomNavigationView
     private var userData:User? = null
-
-    private var auth = FirebaseAuth.getInstance()
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        userViewModel = (activity as MainActivity).userViewModel!!
         setupUi()
         setupAdRecyclerView()
         setupCategoryRecyclerView()
@@ -65,7 +64,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
 
         basketBtn.setOnClickListener {
-            if(auth.currentUser == null){
+            if(!userViewModel.isAuthenticated){
                 showWarningDialog()
             }else{
                 findNavController().navigate(R.id.action_homeFragment_to_basketFragment)
@@ -78,7 +77,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun getUser() {
         bottomNavBar.visibility = View.GONE
-        if(auth.currentUser == null) loadingFinished()
+        if(!userViewModel.isAuthenticated) loadingFinished()
         userViewModel.getUserData().observe(viewLifecycleOwner) { user ->
             userData = user
             if(user!=null){
@@ -129,7 +128,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 LinearLayoutManager.HORIZONTAL,
                 false
             )
-            setHasFixedSize(true)
         }
     }
 }

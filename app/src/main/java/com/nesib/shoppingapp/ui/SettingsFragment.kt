@@ -7,23 +7,29 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.nesib.shoppingapp.MainActivity
 import com.nesib.shoppingapp.R
 import com.nesib.shoppingapp.WelcomeActivity
 import com.nesib.shoppingapp.viewmodels.UserViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_settings.*
+import javax.inject.Inject
 import kotlin.math.sign
 
+@AndroidEntryPoint
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private lateinit var userViewModel: UserViewModel
-    private val auth = FirebaseAuth.getInstance()
+
+    @Inject
+    lateinit var auth:FirebaseAuth
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        userViewModel = (activity as MainActivity).userViewModel!!
         setupUi()
     }
 
     private fun setupUi() {
-        if (userViewModel.isAuthenticated.value!!) {
+        if (userViewModel.isAuthenticated) {
             val user = userViewModel.getUserData().value!!
             accountContainer.visibility = View.VISIBLE
             userName.text = user.name

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.nesib.shoppingapp.MainActivity
 import com.nesib.shoppingapp.R
 import com.nesib.shoppingapp.adapters.BasketAdapter
 import com.nesib.shoppingapp.model.Food
@@ -120,8 +121,8 @@ class BasketFragment : Fragment(R.layout.fragment_basket) {
     }
 
     private fun initializeViewModels() {
-        userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        foodViewModel = ViewModelProvider(this).get(FoodViewModel::class.java)
+        userViewModel = (activity as MainActivity).userViewModel!!
+        foodViewModel = (activity as MainActivity).foodViewModel!!
     }
 
     private fun incOrDecFoodCount(isIncrement: Boolean, selectedFood: Food) {
