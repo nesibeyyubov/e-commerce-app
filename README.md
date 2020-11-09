@@ -1,4 +1,4 @@
-A food order app.
+:fire: A food order app.
 
 <h3>Technologies i used</h3>
 <ul>
