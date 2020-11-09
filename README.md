@@ -16,14 +16,15 @@ A food order app.
      <td>See all users</td>
      <td>Messaging</td>
      <td>Profile and logout</td>
+     <td>Profile and logout</td>
   </tr>
   <tr>
-    <td valign="top"><img src="Screenshot_1600090695.png"></td>
-    <td valign="top"><img src="Screenshot_1600090275.png"></td>
-    <td valign="top"><img src="Screenshot_1600090656.png"></td>
-    <td valign="top"><img src="Screenshot_1600090662.png"></td>
-    <td valign="top"><img src="Screenshot_1600090666.png"></td>
-   
+    <td valign="top"><img src="welcome.png"></td>
+    <td valign="top"><img src="auth.png"></td>
+    <td valign="top"><img src="home.png"></td>
+    <td valign="top"><img src="foods.png"></td>
+    <td valign="top"><img src="basket.png"></td>
+    <td valign="top"><img src="checkout.png"></td>
   </tr>
  </table>
 
